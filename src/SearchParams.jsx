@@ -1,11 +1,12 @@
+import { useState } from "react";
 const SearchParams = () => {
-    const location = "Seattle, WA";
+    const [location, setLocation] = useState("")
     return (
         <div className="search-params">
             <form>
                 <label htmlFor="location">
                     Location
-                    <input id="location" value={location} placeholder="location" />
+                    <input id="location" onChange={(e) => setLocation(e.target.value)} value={location} placeholder="location" />
                     <button>Submit</button>
                 </label>
             </form>
