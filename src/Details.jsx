@@ -1,9 +1,31 @@
 import { useParams } from "react-router";
+import { useQuery } from "@tanstack/react-query";
+import fetchPet from "./fetchPet";
 
 const Details = () => {
     const { id } = useParams();
-    console.log(id)
-    return <h2>{id}</h2>;
+    const results = useQuery(["details", id], fetchPet);
+
+    if (results.isLoading) {
+        return (
+            <div className="loading-pane">
+                <h2 className="loader">🕸</h2>
+            </div>
+        )
+    }
+
+    const pet = results.data.pets[0];
+
+    return (
+        <div className="details">
+            <h1>{pet.name}</h1>
+            <h2>
+                {pet.animal} - {pet.breed} - {pet.city}, {pet.state}
+                <button>Adopt {pet.name}</button>
+                <p>{pet.description}</p>
+            </h2>
+        </div>
+    );
 };
 
 export default Details;
