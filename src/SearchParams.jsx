@@ -26,7 +26,7 @@ const SearchParams = () => {
                 const obj = {
                     animal: formData.get("animal") ?? "",
                     breed: formData.get("breed") ?? "",
-                    location: formData.get("locations") ?? "",
+                    location: formData.get("location") ?? "",
                 };
                 setRequestParams(obj)
             }}>
@@ -41,6 +41,7 @@ const SearchParams = () => {
                     Animal
                     <select
                         id="animal"
+                        name="animal"
                         value={animal}
                         onChange={(e) => {
                             setAnimal(e.target.value);
@@ -48,7 +49,7 @@ const SearchParams = () => {
                     >
                         <option />
                         {ANIMALS.map((animal) => (
-                            <option key={animal} value={animal}>
+                            <option key={animal}>
                                 {animal}
                             </option>
                         ))}
